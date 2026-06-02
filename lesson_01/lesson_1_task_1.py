@@ -1,2 +1,2 @@
-name = "Андрей"
-print("Привет, " + name)
+my_name = "Андрей"
+print("Привет, " + my_name)
