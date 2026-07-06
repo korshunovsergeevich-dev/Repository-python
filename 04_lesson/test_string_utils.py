@@ -24,7 +24,7 @@ class TestCapitalize:
         """Негативный тест: пустая строка"""
         assert utils.capitalize(" ") == " "
 
-    def test_negative_with_numbers(self, utils):
+    def test_positive_with_numbers(self, utils):
         """Позитивный тест: строка с цифрами"""
         assert utils.capitalize("123abc") == "123abc"
 
@@ -76,6 +76,33 @@ class TestContains:
         """Негативный тест:поиск пустой строки как символа (поведение index)"""
         assert utils.contains("SkyPro", "")
 
-    def test_negative_long_substring(self, utils):
-        """Негативный тест"""
+    def test_positive_long_substring(self, utils):
+        """Позитивный тест"""
         assert utils.contains("SkyPro", "ky")
+
+
+class TestDelete_symbol:
+    def test_positive_case_sensitivity(self, utils):
+        """Позитивный тест: регистрозависимость"""
+        assert utils.delete_symbol("Hello", "H") == "ello"
+
+    def test_positive_special_characters(self, utils):
+        """Позитивный тест: удаление спецсимволов"""
+        assert utils.delete_symbol("a.b*c", ".") == "ab*c"
+        assert utils.delete_symbol("a.b*c", "*") == "a.bc"
+
+    def test_positive_symbol_exists_multiple(self, utils):
+        """Позитивный тест: символ встречается несколько раз"""
+        assert utils.delete_symbol("banana", "a") == "bnn"
+
+    def test_negative_symbol_not_exists(self, utils):
+        """Негативный тест: символа нет в строке"""
+        assert utils.delete_symbol("SkyPro", "U") == "SkyPro"
+
+    def test_negative_empty_string(self, utils):
+        """Негативный тест: входная строка пустая"""
+        assert utils.delete_symbol("", "a") == ""
+
+    def test_negative_symbol_is_empty(self, utils):
+        """Негативный тест: пытаемся удалить пустой символ"""
+        assert utils.delete_symbol("abc", "") == "abc"
