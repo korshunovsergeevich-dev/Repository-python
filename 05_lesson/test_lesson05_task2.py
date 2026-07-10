@@ -11,8 +11,8 @@ def test_form_submission():
     custname_field.send_keys("Andrey")
 
     submit_button = driver.find_element(By.XPATH, "//button[text()='Submit']")
-    submit_button.click('Submit')
+    submit_button.click()
 
-    assert driver.current_url("/post")
+    assert "/post" in driver.current_url
 
     driver.quit()
