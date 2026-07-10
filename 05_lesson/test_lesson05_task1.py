@@ -8,10 +8,12 @@ def test_navigation():
     driver.get("https://httpbin.org/")
 
     html_form_link = driver.find_element(By.LINK_TEXT, "HTML Form")
-    html_form_link.click("HTML Form")
+    html_form_link.click()
 
     assert driver.current_url.endswith("/forms/post")
 
     driver.back()
 
     assert driver.current_url.endswith("/httpbin")
+
+    driver.back()
