@@ -1,5 +1,4 @@
 from selenium import webdriver
-import time
 
 
 def test_session_storage_auth():
@@ -13,11 +12,12 @@ def test_session_storage_auth():
             "domain": "gitflic.ru"
         })
 
+    driver.refresh()
+
     driver.get("https://gitflic.ru/user/korshunovandreas")
 
     url_user1 = driver.current_url
 
-    time.sleep(3)
     driver.delete_all_cookies()
 
     driver.add_cookie({
@@ -34,5 +34,4 @@ def test_session_storage_auth():
 
     assert url_user1 != url_user2
 
-    time.sleep(3)
     driver.quit()
