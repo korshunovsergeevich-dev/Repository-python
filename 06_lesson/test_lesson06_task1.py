@@ -14,7 +14,9 @@ def test_dynamic_loading():
         EC.element_to_be_clickable(By.CSS_SELECTOR, "button[type='submit']"))
     start_button.click()
 
-    hello_text_element = wait.until((By.ID, "finish"))
+    hello_text_element = wait.until(
+        EC.presence_of_element_located((By.ID, "finish"))
+    )
 
     driver.save_screenshot("dynamic_loading_screenshot.png")
 
